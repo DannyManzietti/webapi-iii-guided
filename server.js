@@ -11,14 +11,14 @@ function dateLogger(req, res, next) {
 }
 
 const httpLogger = (req, res, next) => {
-  const { url, method } = req;
-  console.log();
+  console.log(`${req.method} to ${req.url}`);
   next();
 };
 
 server.use(express.json());
 server.use(helmet());
 server.use(dateLogger);
+server.use(httpLogger);
 
 server.use("/api/hubs", hubsRouter);
 
